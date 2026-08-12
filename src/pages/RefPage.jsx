@@ -29,8 +29,6 @@ export default function RefPage(){
     }
 
     const stopInterval = () => {
-
-        
         clearInterval(intervalRef.current)
     }
 
