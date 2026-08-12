@@ -12,6 +12,7 @@ import UsePage from "./pages/usePage";
 import TimePage from "./pages/TimePage";
 import FetchPage from "./pages/FetchPage";
 import TodosPage from "./pages/TodoPage";
+import MiniQuest from "./pages/MiniQuest";
 
 
 export default function App(){
@@ -21,6 +22,7 @@ export default function App(){
       <Routes>
         <Route element={<SharedLayout/>}>
           <Route path={"/timepage"} element={<TimePage/>}/>
+          <Route path="/miniquest" element={<MiniQuest/>}></Route>
           <Route path="/todopage" element={<TodosPage/>} />
           <Route path={"/fetchpage"} element={<FetchPage/>} />
           <Route path="/usePage" element={<UsePage/>}/>
