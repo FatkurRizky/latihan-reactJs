@@ -25,7 +25,7 @@ export default function AsyncPage() {
     };
 
     const searchById = async () => {
-        if(abortRef.current){
+        if (abortRef.current) {
             abortRef.current.abort()
         }
 
@@ -39,13 +39,37 @@ export default function AsyncPage() {
             const result = await response.json();
             setPost(result);
         } catch (err) {
-            if(err.name === "AbortError") return
+            if (err.name === "AbortError") return
             setError(err.message)
         } finally {
             setLoading(false);
         }
     };
 
+
+    const handleDelete = async (id) => {
+        const targetProducts = Products.find(p => p.id === id)
+        const name = targetProducts ? targetProducts.name : 'barang ini'
+
+        showAlert(
+            'Hapus Barang?',
+            `Apakah Anda yakin ingin menghapus "${name}"`,
+            'confirm',
+            async () => {
+                try{
+                    await axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+                    fetchProducts();
+                    showAlert('Barang dihapus', `"${name}" berhasil dihapus`)
+                } catch{
+                    showAlert('Gagal Hapus', 'Terjadi kesalahan', 'error')
+                }
+            },
+
+            'Ya Hapus Barang'
+        )
+
+
+    }
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error!</p>;
 
