@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export default function AsyncPage() {
     const [error, setError] = useState("");
@@ -6,6 +6,7 @@ export default function AsyncPage() {
     const [data, setData] = useState([]);
     const [post, setPost] = useState(null);
     const [id, setId] = useState("");
+    const abortRef = useRef(null);
 
     const FetchData = async () => {
         setLoading(true);
@@ -24,16 +25,22 @@ export default function AsyncPage() {
     };
 
     const searchById = async () => {
+        if(abortRef.current){
+            abortRef.current.abort()
+        }
+
+        abortRef.current = new AbortController()
         setLoading(true);
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { signal: abortRef.current.signal });
             if (!response.ok) {
                 throw new Error(`HTTP status ${response.status}`);
             }
             const result = await response.json();
             setPost(result);
         } catch (err) {
-            setError(err.message);
+            if(err.name === "AbortError") return
+            setError(err.message)
         } finally {
             setLoading(false);
         }
