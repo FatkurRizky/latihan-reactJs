@@ -14,6 +14,7 @@ import FetchPage from "./pages/FetchPage";
 import TodosPage from "./pages/TodoPage";
 import MiniQuest from "./pages/MiniQuest";
 import RefPage from "./pages/RefPage";
+import AsyncPage from "./pages/AsyncPage";
 
 
 export default function App(){
@@ -22,7 +23,8 @@ export default function App(){
       <BrowserRouter>
       <Routes>
         <Route element={<SharedLayout/>}>
-        <Route path="/refpage" element={<RefPage/>} />
+          <Route path="/asyncpage" element={<AsyncPage/>}/>
+          <Route path="/refpage" element={<RefPage/>} />
           <Route path={"/timepage"} element={<TimePage/>}/>
           <Route path="/miniquest" element={<MiniQuest/>}></Route>
           <Route path="/todopage" element={<TodosPage/>} />
