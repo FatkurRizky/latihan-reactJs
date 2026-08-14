@@ -47,7 +47,7 @@ export default function AsyncPage() {
     };
 
 
-    const handleDelete = async (id) => {
+    const handleDelete =  (id) => {
         const targetProducts = Products.find(p => p.id === id)
         const name = targetProducts ? targetProducts.name : 'barang ini'
 
