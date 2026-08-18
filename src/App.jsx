@@ -15,15 +15,20 @@ import TodosPage from "./pages/TodoPage";
 import MiniQuest from "./pages/MiniQuest";
 import RefPage from "./pages/RefPage";
 import AsyncPage from "./pages/AsyncPage";
+import Quiz from "./pages/Quiz";
+import UserContextProvider from "./pages/UserContext";
 
 
 export default function App(){
   return (
     <ThemeProvider>
+      <UserContextProvider>
       <BrowserRouter>
       <Routes>
         <Route element={<SharedLayout/>}>
           <Route path="/asyncpage" element={<AsyncPage/>}/>
+          <Route path="/usecontext"/>
+          <Route path="/quiz" element={<Quiz/>}/>
           <Route path="/refpage" element={<RefPage/>} />
           <Route path={"/timepage"} element={<TimePage/>}/>
           <Route path="/miniquest" element={<MiniQuest/>}></Route>
@@ -38,6 +43,7 @@ export default function App(){
         </Route>
       </Routes>
       </BrowserRouter>
+      </UserContextProvider>
     </ThemeProvider>
   )
 }
