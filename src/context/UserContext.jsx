@@ -8,8 +8,8 @@ export default function UserContextProvider({ children }) {
 
 
 
-    const handleLogin = () => {
-        setUsers({ name: 'Faris', role: 'Warga' })
+    const handleLogin = (namaUsers, roleUsers, addressUsers) => {
+        setUsers({name: namaUsers, role:roleUsers, address: addressUsers})
     }
 
     const handleLogout = () => {

@@ -16,7 +16,8 @@ import MiniQuest from "./pages/MiniQuest";
 import RefPage from "./pages/RefPage";
 import AsyncPage from "./pages/AsyncPage";
 import Quiz from "./pages/Quiz";
-import UserContextProvider from "./pages/UserContext";
+import UserContextProvider from "./context/UserContext";
+import LoginSimulation from "./pages/LoginSimulation";
 
 
 export default function App(){
@@ -31,7 +32,8 @@ export default function App(){
           <Route path="/quiz" element={<Quiz/>}/>
           <Route path="/refpage" element={<RefPage/>} />
           <Route path={"/timepage"} element={<TimePage/>}/>
-          <Route path="/miniquest" element={<MiniQuest/>}></Route>
+          <Route path={'login-sim'} element={<LoginSimulation/>}/>
+          <Route path="/miniquest" element={<MiniQuest/>}/>
           <Route path="/todopage" element={<TodosPage/>} />
           <Route path={"/fetchpage"} element={<FetchPage/>} />
           <Route path="/usePage" element={<UsePage/>}/>
